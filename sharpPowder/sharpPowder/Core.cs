@@ -16,6 +16,8 @@ namespace sharpPowder
     /// </summary>
     public class Core : Microsoft.Xna.Framework.Game
     {
+        public Particle[,] ParticleMap;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -23,6 +25,7 @@ namespace sharpPowder
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            ParticleMap = new Particle[0,0];
         }
 
         /// <summary>
