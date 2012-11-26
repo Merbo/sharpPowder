@@ -33,5 +33,21 @@ namespace sharpPowder
             }
             return null;
         }
+
+        public bool MultipleParticlesAt(int X, int Y)
+        {
+            Particle tmp = null;
+            foreach (Particle part in this.Particles)
+            {
+                if (Convert.ToInt32(part.Position.X) == X && Convert.ToInt32(part.Position.Y) == Y)
+                {
+                    if (tmp == null)
+                        tmp = part;
+                    else
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }
