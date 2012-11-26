@@ -48,6 +48,33 @@ namespace sharpPowder
             this.boundaryBlock = true;
         }
 
+        /// <summary>
+        /// Gets neighbors of particle.
+        /// 
+        /// Indices:
+        /// 
+        /// 0 1 2
+        /// 3   4
+        /// 5 6 7
+        /// </summary>
+        /// <returns>An array of the neighbors.</returns>
+        public Particle[] getNeighbors()
+        {
+            int X = Convert.ToInt32(this.Position.X);
+            int Y = Convert.ToInt32(this.Position.Y);
+            Particle[] neighbors = new Particle[8];
+            neighbors[0] = this.core.particleMap.GetParticleAt(X - 1, Y + 1);
+            neighbors[1] = this.core.particleMap.GetParticleAt(X, Y + 1);
+            neighbors[2] = this.core.particleMap.GetParticleAt(X + 1, Y + 1);
+            neighbors[3] = this.core.particleMap.GetParticleAt(X - 1, Y);
+            neighbors[4] = this.core.particleMap.GetParticleAt(X + 1, Y);
+            neighbors[5] = this.core.particleMap.GetParticleAt(X - 1, Y - 1);
+            neighbors[6] = this.core.particleMap.GetParticleAt(X, Y - 1);
+            neighbors[7] = this.core.particleMap.GetParticleAt(X + 1, Y - 1);
+
+            return neighbors;
+        }
+
         public void Update(GameTime GameTime)
         {
             this.Position +=
@@ -93,6 +120,12 @@ namespace sharpPowder
                 }
                 else
                     this.core.particleMap.RemoveParticle(this);
+            }
+
+            Particle[] neighbors = this.getNeighbors();
+            if (neighbors[6] != null)
+            {
+                this.Velocity.Y = 0;
             }
         }
 
