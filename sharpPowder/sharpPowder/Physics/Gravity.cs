@@ -19,6 +19,7 @@ namespace sharpPowder.Physics
         public static void ApplyGravity(Particle Particle)
         {
             //http://upload.wikimedia.org/math/2/5/8/2584a12584dcea216e766c4bbcb514eb.png
+            //My idiocy makes this shit infinite.
             float DragCoefficient = Convert.ToSingle((2) / (Particle.Element.Density * Math.Pow(Particle.Velocity.Y, 2) * 1));
 
             if (Particle.Velocity.Y < 0)

@@ -84,7 +84,7 @@ namespace sharpPowder
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 if (particleMap.GetParticleAt(Mouse.GetState().X, Mouse.GetState().Y) == null)
-                    particleMap.AddParticle(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
+                    particleMap.AddParticle(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y, this));
             }
 
             PhysicsCore.ApplyPhysics(particleMap, gameTime);
