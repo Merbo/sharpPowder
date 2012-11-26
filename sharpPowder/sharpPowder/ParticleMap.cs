@@ -28,7 +28,7 @@ namespace sharpPowder
         {
             foreach (Particle part in this.Particles)
             {
-                if (part.Position.X == X && part.Position.Y == Y)
+                if (Convert.ToInt32(part.Position.X) == X && Convert.ToInt32(part.Position.Y) == Y)
                     return part;
             }
             return null;

@@ -77,8 +77,17 @@ namespace sharpPowder
 
         public void Update(GameTime GameTime)
         {
+            Particle[] neighbors = this.getNeighbors();
             this.Position +=
                 this.Velocity * (float)GameTime.ElapsedGameTime.TotalSeconds;
+
+            if (neighbors[6] != null)
+            {
+                Particle[] neighborNeighbors = neighbors[6].getNeighbors();
+                if (neighborNeighbors[6] != null)
+                    if (this.Element.Density < neighborNeighbors[6].Element.Density)
+                        this.Velocity.Y = 0;
+            }
 
             if (this.Position.X > core.GraphicsDevice.Viewport.Width - this.Texture.Width)
             {
@@ -120,13 +129,7 @@ namespace sharpPowder
                 }
                 else
                     this.core.particleMap.RemoveParticle(this);
-            }
-
-            Particle[] neighbors = this.getNeighbors();
-            if (neighbors[6] != null)
-            {
-                this.Velocity.Y = 0;
-            }
+            }    
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
