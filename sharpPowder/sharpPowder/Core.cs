@@ -17,7 +17,7 @@ namespace sharpPowder
     /// </summary>
     public class Core : Microsoft.Xna.Framework.Game
     {
-        public List<Particle> ParticleMap;
+        public ParticleMap ParticleMap;
         public static Texture2D SolidTwoByTwo;
 
         private static Element TestPowder_Element = new Element("Test Powder", "Powder test... Debug element.", Element.ElementType.Powder, Color.Blue, 1.1f, 0.2f, null);
@@ -33,7 +33,7 @@ namespace sharpPowder
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            ParticleMap = new List<Particle>(this.Window.ClientBounds.Width * this.Window.ClientBounds.Height);
+            ParticleMap = new ParticleMap();
         }
 
         /// <summary>
@@ -82,7 +82,10 @@ namespace sharpPowder
                 this.Exit();
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                ParticleMap.Add(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
+            {
+                if (ParticleMap.GetParticleAt(Mouse.GetState().X, Mouse.GetState().Y) == null)
+                    ParticleMap.AddParticle(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
+            }
 
             PhysicsCore.ApplyPhysics(ParticleMap, gameTime);
             // TODO: Add your update logic here

@@ -18,9 +18,9 @@ namespace sharpPowder.Physics
         public static bool GravityEnabled = true;
 
 
-        public static void ApplyPhysics(List<Particle> input, GameTime GameTime)
+        public static void ApplyPhysics(ParticleMap input, GameTime GameTime)
         {
-            foreach (Particle Particle in input)
+            foreach (Particle Particle in input.Particles)
             {
                 if (GravityEnabled)
                     Gravity.ApplyGravity(Particle);

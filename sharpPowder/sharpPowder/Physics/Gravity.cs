@@ -14,7 +14,7 @@ namespace sharpPowder.Physics
         /// Gravitational constant on earth
         /// </summary>
         //public const float gravConstant = 9.81f; //Real, but too fast
-        public const float gravConstant = 1.75f;
+        public const float gravConstant = 1.15f;
 
         public static void ApplyGravity(Particle Particle)
         {
