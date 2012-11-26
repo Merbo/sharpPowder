@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Element.cs" />
     <Compile Include="Particle.cs" />
+    <Compile Include="ParticleMap.cs" />
     <Compile Include="Physics\Gravity.cs" />
     <Compile Include="Physics\PhysicsCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,7 +17,7 @@ namespace sharpPowder
     /// </summary>
     public class Core : Microsoft.Xna.Framework.Game
     {
-        public ParticleMap ParticleMap;
+        public ParticleMap particleMap;
         public static Texture2D SolidTwoByTwo;
 
         private static Element TestPowder_Element = new Element("Test Powder", "Powder test... Debug element.", Element.ElementType.Powder, Color.Blue, 1.1f, 0.2f, null);
@@ -33,7 +33,7 @@ namespace sharpPowder
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            ParticleMap = new ParticleMap();
+            particleMap = new ParticleMap();
         }
 
         /// <summary>
@@ -83,11 +83,11 @@ namespace sharpPowder
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                if (ParticleMap.GetParticleAt(Mouse.GetState().X, Mouse.GetState().Y) == null)
-                    ParticleMap.AddParticle(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
+                if (particleMap.GetParticleAt(Mouse.GetState().X, Mouse.GetState().Y) == null)
+                    particleMap.AddParticle(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
             }
 
-            PhysicsCore.ApplyPhysics(ParticleMap, gameTime);
+            PhysicsCore.ApplyPhysics(particleMap, gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -102,7 +102,7 @@ namespace sharpPowder
             GraphicsDevice.Clear(Color.Black);
 
             this.spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            foreach (Particle P in ParticleMap)
+            foreach (Particle P in particleMap.Particles)
                 P.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 

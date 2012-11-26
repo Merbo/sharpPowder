@@ -5,7 +5,7 @@ using System.Text;
 
 namespace sharpPowder
 {
-    class ParticleMap
+    public class ParticleMap
     {
         public List<Particle> Particles;
 
