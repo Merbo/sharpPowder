@@ -15,7 +15,7 @@ namespace sharpPowder.Physics
         /// Air density at 0C
         /// </summary>
         public const float AirDensity = 1.2922f;
-        public static bool GravityEnabled;
+        public static bool GravityEnabled = true;
 
 
         public static void ApplyPhysics(List<Particle> input, GameTime GameTime)

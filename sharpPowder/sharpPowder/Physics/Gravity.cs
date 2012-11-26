@@ -13,15 +13,18 @@ namespace sharpPowder.Physics
         /// <summary>
         /// Gravitational constant on earth
         /// </summary>
-        public const float gravConstant = 9.81f;
+        //public const float gravConstant = 9.81f; //Real, but too fast
+        public const float gravConstant = 1.75f;
 
         public static void ApplyGravity(Particle Particle)
         {
             //http://upload.wikimedia.org/math/2/5/8/2584a12584dcea216e766c4bbcb514eb.png
             float DragCoefficient = Convert.ToSingle((2) / (Particle.Element.Density * Math.Pow(Particle.Velocity.Y, 2) * 1));
 
-            if (Particle.Velocity.Y > 0)
+            if (Particle.Velocity.Y < 0)
                 Particle.Velocity.Y *= -1;
+            else if (Particle.Velocity.Y == 0)
+                Particle.Velocity.Y = 0.001f;
             Particle.Velocity.Y *= gravConstant;
 
             Particle.Velocity.X *= (1 - Particle.Element.Friction);
