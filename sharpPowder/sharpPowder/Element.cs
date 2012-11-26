@@ -15,8 +15,8 @@ namespace sharpPowder
         public string Description;
         public ElementType Type;
         public Color Color;
-        public float Mass;
         public float Density;
+        public float Friction;
         public Delegate UpdateMethod;
 
         /// <summary>
@@ -37,15 +37,15 @@ namespace sharpPowder
         /// Return 1 = Delete me
         /// More return types may be added soon.
         /// </param>
-        public Element(string name, string description, ElementType type, Color color, float mass, float density, Delegate updateMethod)
+        public Element(string name, string description, ElementType type, Color color, float density, float friction, Delegate updateMethod)
         {
             this.Name = name;
             this.Description = description;
             this.Type = type;
             this.Color = color;
-            this.Mass = mass;
             this.Density = density;
-            this.UpdateMethod = updateMethod;
+            this.Friction = friction;
+            this.UpdateMethod = updateMethod; //TODO
         }
 
         /// <summary>

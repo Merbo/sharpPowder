@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using sharpPowder.Physics;
 
 namespace sharpPowder
 {
@@ -16,7 +17,13 @@ namespace sharpPowder
     /// </summary>
     public class Core : Microsoft.Xna.Framework.Game
     {
-        public Particle[,] ParticleMap;
+        public List<Particle> ParticleMap;
+
+        private static Element TestPowder_Element = new Element("Test Powder", "Powder test... Debug element.", Element.ElementType.Powder, Color.Blue, 1.1f, 0.2f, null);
+        public Element[] TestElements = 
+        {
+            TestPowder_Element,
+        };
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -25,7 +32,7 @@ namespace sharpPowder
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            ParticleMap = new Particle[0,0];
+            ParticleMap = new List<Particle>(this.Window.ClientBounds.Width * this.Window.ClientBounds.Height);
         }
 
         /// <summary>
@@ -70,9 +77,13 @@ namespace sharpPowder
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                ParticleMap.Add(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y, this));
+
+            PhysicsCore.ApplyPhysics(ParticleMap, gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,7 +95,7 @@ namespace sharpPowder
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
