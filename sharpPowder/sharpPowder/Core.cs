@@ -18,7 +18,7 @@ namespace sharpPowder
     public class Core : Microsoft.Xna.Framework.Game
     {
         public ParticleMap particleMap;
-        public static Texture2D SolidTwoByTwo;
+        public static Texture2D SolidPixel;
 
         private static Element TestPowder_Element = new Element("Test Powder", "Powder test... Debug element.", Element.ElementType.Powder, Color.Blue, 1.1f, 0.2f, null);
         public Element[] TestElements = 
@@ -57,7 +57,7 @@ namespace sharpPowder
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            SolidTwoByTwo = Content.Load<Texture2D>("SolidTwoByTwo");
+            SolidPixel = Content.Load<Texture2D>("SolidPixel");
             // TODO: use this.Content to load your game content here
         }
 

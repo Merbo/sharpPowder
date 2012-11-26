@@ -26,7 +26,7 @@ namespace sharpPowder
         public Particle(Element element, int x, int y, Core c)
         {
             this.core = c;
-            this.Texture = Core.SolidTwoByTwo;
+            this.Texture = Core.SolidPixel;
             this.Color = element.Color;
             this.Element = element;
 
@@ -39,7 +39,7 @@ namespace sharpPowder
         public Particle(Element element, int x, int y, float speedX, float speedY, Core c)
         {
             this.core = c;
-            this.Texture = Core.SolidTwoByTwo;
+            this.Texture = Core.SolidPixel;
             this.Color = element.Color;
             this.Element = element;
 
