@@ -84,8 +84,8 @@ namespace sharpPowder
             if (neighbors[6] != null)
             {
                 Particle[] neighborNeighbors = neighbors[6].getNeighbors();
-                if (neighborNeighbors[6] != null)
-                    if (this.Element.Density < neighborNeighbors[6].Element.Density)
+                if (neighborNeighbors[6] != null) //The issue here is that it moves too fast. It can move multiple pixels per frame. Solution to be implemented is to determine if there are multiple particles in the same location.
+                    if (this.Element.Density <= neighborNeighbors[6].Element.Density)
                         this.Velocity.Y = 0;
             }
 
