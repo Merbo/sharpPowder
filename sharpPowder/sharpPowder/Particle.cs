@@ -22,6 +22,7 @@ namespace sharpPowder
         public Particle(Element element, int x, int y, Game game)
             : base(game)
         {
+            this.Content = game.Content;
             this.Color = element.Color;
             this.Element = element;
 
@@ -33,6 +34,7 @@ namespace sharpPowder
         public Particle(Element element, int x, int y, float speedX, float speedY, Game game)
             : base(game)
         {
+            this.Content = game.Content;
             this.Color = element.Color;
             this.Element = element;
 
