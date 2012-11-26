@@ -18,6 +18,7 @@ namespace sharpPowder
     public class Core : Microsoft.Xna.Framework.Game
     {
         public List<Particle> ParticleMap;
+        public static Texture2D SolidTwoByTwo;
 
         private static Element TestPowder_Element = new Element("Test Powder", "Powder test... Debug element.", Element.ElementType.Powder, Color.Blue, 1.1f, 0.2f, null);
         public Element[] TestElements = 
@@ -56,7 +57,7 @@ namespace sharpPowder
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            SolidTwoByTwo = Content.Load<Texture2D>("SolidTwoByTwo");
             // TODO: use this.Content to load your game content here
         }
 
@@ -81,7 +82,7 @@ namespace sharpPowder
                 this.Exit();
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                ParticleMap.Add(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y, this));
+                ParticleMap.Add(new Particle(TestPowder_Element, Mouse.GetState().X, Mouse.GetState().Y));
 
             PhysicsCore.ApplyPhysics(ParticleMap, gameTime);
             // TODO: Add your update logic here
@@ -97,7 +98,10 @@ namespace sharpPowder
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            this.spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            foreach (Particle P in ParticleMap)
+                P.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
