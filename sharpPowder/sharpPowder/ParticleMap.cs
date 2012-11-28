@@ -7,21 +7,20 @@ namespace sharpPowder
 {
     public class ParticleMap
     {
-        public List<Particle> Particles;
+        public Particle[] Particles;
 
         public ParticleMap()
         {
-            Particles = new List<Particle>();
         }
 
         public void AddParticle(Particle part)
         {
-            this.Particles.Add(part);
+            Particles[Particles.Length - 1] = part;
         }
 
         public void RemoveParticle(Particle part)
         {
-            this.Particles.Remove(part);
+            
         }
 
         public Particle GetParticleAt(int X, int Y)

@@ -82,7 +82,7 @@ namespace sharpPowder
                 this.Velocity * (float)GameTime.ElapsedGameTime.TotalSeconds;
 
             if (this.core.particleMap.MultipleParticlesAt(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y)))
-                this.core.particleMap.RemoveParticle(this);
+                this.Position.Y += 1;
 
             if (neighbors[6] != null)
             {
@@ -138,6 +138,11 @@ namespace sharpPowder
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Texture, this.Position, this.Color);
+        }
+
+        public void Kill()
+        {
+            
         }
     }
 }
